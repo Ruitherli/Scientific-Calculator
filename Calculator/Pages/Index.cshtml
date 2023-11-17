@@ -1,0 +1,137 @@
+﻿@page
+@model IndexModel
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
+
+<div class="container">
+    <h2>Scientific Calculator</h2>
+    <!-- Toggle Switch for Degree/Radian mode -->
+    <div class="degree-radian-toggle">
+        <label class="switch">
+            <input type="checkbox" id="degree-radian-checkbox" onchange="toggleDegreeRadianMode()">
+            <span class="slider round"></span>
+        </label>
+        <span id="mode-display">Degree</span>
+    </div>
+    <!-- Display for Current Number Format -->
+    <div id="number-format-display">DEC</div>
+
+    <div id="calculator">
+        <!-- Display Screen -->
+        <h5>Results</h5>
+        <div id="display">0</div>
+        <!-- History Screen -->
+        <h5>History</h5>
+        <div id="history" class="history-display"></div>
+        <button class="button history-button" onclick="clearHistory()">Clear History</button>
+        <!-- Memory Functions -->
+        <div class="button-row">
+            <button class="button memory-button" onclick="memoryClear()">MC</button>
+            <button class="button memory-button" onclick="memoryRecall()">MR</button>
+            <button class="button memory-button" onclick="memoryAdd()">M+</button>
+            <button class="button memory-button" onclick="memoryMinus()">M-</button>
+            <span id="memory-indicator" style="visibility: hidden;">M</span>
+        </div>
+
+        <!-- Basic Operations -->
+        <div class="button-row">
+            <button class="button number-button" id="btn-7" onclick="press('7')">7</button>
+            <button class="button number-button" id="btn-8" onclick="press('8')">8</button>
+            <button class="button number-button" id="btn-9" onclick="press('9')">9</button>
+            <button onclick="pressOperation('/')">/</button>
+            <button onclick="clearEntry()">CE</button>
+        </div>
+        <div class="button-row">
+            <button class="button number-button" id="btn-4" onclick="press('4')">4</button>
+            <button class="button number-button" id="btn-5" onclick="press('5')">5</button>
+            <button class="button number-button" id="btn-6" onclick="press('6')">6</button>
+            <button onclick="pressOperation('*')">*</button>
+
+        </div>
+        <div class="button-row">
+            <button class="button number-button" id="btn-1" onclick="press('1')">1</button>
+            <button class="button number-button" id="btn-2" onclick="press('2')">2</button>
+            <button class="button number-button" id="btn-3" onclick="press('3')">3</button>
+            <button onclick="pressOperation('-')">-</button>
+            <button class="button equals-button" onclick="calculate()">=</button>
+        </div>
+        <div class="button-row">
+            <button onclick="toggleSign()">+/-</button>
+            <button class="button number-button" id="btn-0" onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+            <button onclick="pressOperation('+')">+</button>
+
+        </div>
+
+        <!-- Power and Root Functions -->
+        <div class="button-row">
+            <button onclick="pressPowerButton()">x^y</button>
+            <button onclick="pressPower(currentInput, '2')">x<sup>2</sup></button>
+            <button onclick="pressPower(currentInput, '3')">x<sup>3</sup></button>
+            <button onclick="pressNthRoot()">y√x</button>
+            <button onclick="pressSquareRoot()">√</button>
+            <button onclick="press('pi')">π</button>
+        </div>
+
+        <!-- Trigonometry Functions -->
+        <div class="button-row">
+            <button onclick="pressTrigFunction('sin')">sin</button>
+            <button onclick="pressTrigFunction('cos')">cos</button>
+            <button onclick="pressTrigFunction('tan')">tan</button>
+            <button onclick="pressTrigFunction('asin')">sin<sup>-1</sup></button>
+            <button onclick="pressTrigFunction('acos')">cos<sup>-1</sup></button>
+            <button onclick="pressTrigFunction('atan')">tan<sup>-1</sup></button>
+
+        </div>
+
+        <!-- Hyperbolic Functions -->
+        <div class="button-row">
+            <!-- Hyperbolic function buttons -->
+            <button onclick="pressHyperbolicFunction('sinh')">sinh</button>
+            <button onclick="pressHyperbolicFunction('cosh')">cosh</button>
+            <button onclick="pressHyperbolicFunction('tanh')">tanh</button>
+            <button onclick="pressHyperbolicFunction('asinh')">sinh⁻¹</button>
+            <button onclick="pressHyperbolicFunction('acosh')">cosh⁻¹</button>
+            <button onclick="pressHyperbolicFunction('atanh')">tanh⁻¹</button>
+        </div>
+
+        <!-- Logarithmic and Exponential Functions -->
+        <div class="button-row">
+            <button onclick="pressLogFunction('log')">log</button>
+            <button onclick="pressLogFunction('ln')">ln</button>
+            <button onclick="pressLogBase()">log<sub>b</sub>(x)</button>
+            <button onclick="pressPowerOf(10)">10<sup>x</sup></button>
+            <button onclick="pressExponential()">e<sup>x</sup></button>
+            <button onclick="press('euler')">e</button>
+        </div>
+
+        <!-- Number System Functions -->
+        <div class="button-row">
+            <button onclick="setToBinaryMode()">BIN</button>
+            <button onclick="setToOctalMode()">OCT</button>
+            <button onclick="setToDecimalMode()">DEC</button>
+            <button onclick="pressFunction('hex')">HEX</button>
+        </div>
+
+        <!-- Derivative and Logical Functions -->
+        <div class="button-row">
+            <!-- Logical Buttons -->
+            <button onclick="setOperation('AND')">AND</button>
+            <button onclick="setOperation('OR')">OR</button>
+            <button onclick="setOperation('XOR')">XOR</button>
+            <button onclick="pressLogicalNot()">NOT</button>
+
+        </div>
+        <div id="calculator">
+            <!-- ... other calculator buttons ... -->
+            <!-- Input for entering the function to differentiate -->
+            <input type="text" id="function-input" placeholder="Enter function" />
+            <!-- Input for specifying the differentiation variable -->
+            <input type="text" id="variable-input" placeholder="Enter variable" />
+            <!-- Button to trigger differentiation -->
+            <button class="button differentiate-button" onclick="performDifferentiation()">Differentiate</button>
+            <!-- Display for differentiation result -->
+            <div id="derivative-result"></div>
+        </div>
+
+    </div>
+</div>
