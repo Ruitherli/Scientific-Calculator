@@ -48,8 +48,11 @@ function updateHistoryDisplay() {
 }
 
 
-function addToHistory(description) {
-    history.unshift(description); // Add to the start of the history array
+function addToHistory(calculation, result) {
+    // Convert result to the current number format before adding to history
+    const formattedResult = convertFromDecimal(result);
+    const historyEntry = `${currentNumberSystem}: ${calculation} = ${formattedResult}`;
+    history.unshift(historyEntry); // Add to the start of the history array
     updateHistoryDisplay(); // Update the history display
 }
 
@@ -74,13 +77,13 @@ function pressPower(base, exponent) {
         currentInput = result.toString();
         updateDisplay(currentInput);
         clearDisplayOnNextInput = true;
-        addToHistory(`${base} ^ ${exponent} = ${result}`);
+        addToHistory(`${base} ^ ${exponent}`,result);
     } else {
         // If only the base is provided, store it and wait for exponent input
         previousInput = currentInput;
         currentInput = '';
         operation = 'power';
-        addToHistory(`${base} ^ ${exponent} = ${result}`);
+        addToHistory(`${base} ^ ${exponent}`, result);
     }
 }
 
@@ -222,23 +225,25 @@ function calculate() {
         }
 
         if (!isNaN(result)) {
-            // If result is a number, proceed to update history and display
-            const calculation = `${previousInput} ${operation} ${currentInput} = ${result}`;
-            addToHistory(calculation);
-            updateHistoryDisplay();
+            // Format the calculation string with inputs in the current number system
+            let formattedNum1 = convertFromDecimal(num1);
+            let formattedNum2 = convertFromDecimal(num2);
+            let calculation = `${formattedNum1} ${operation} ${formattedNum2}`;
 
+            // Update currentInput and display
             currentInput = convertFromDecimal(result);
             updateDisplay(currentInput);
-        } else {
-            // Handle NaN result, maybe clear the inputs or show an error message
-            clearAll();
-            alert("An error occurred. Please check your input.");
-        }
+            clearDisplayOnNextInput = true;
 
+            // Add formatted calculation and result to history
+            addToHistory(calculation, result);
+        } else {
+            alert("An error occurred. Please check your input.");
+            clearAll();
+        }
         // Reset for the next operation
         operation = null;
         previousInput = '';
-        clearDisplayOnNextInput = true;
     }
 }
 
@@ -291,7 +296,7 @@ function pressSquareRoot() {
         clearDisplayOnNextInput = true;
 
         // Add the square root calculation to history
-        addToHistory(`√(${input}) = ${result}`);
+        addToHistory(`√(${input})`, result);
     }
 }
 
@@ -387,7 +392,7 @@ function pressTrigFunction(func) {
         // Format the result for display and add to history
         currentInput = result.toString();
         updateDisplay(currentInput);
-        addToHistory(`${operationDescription} = ${result}`);
+        addToHistory(`${operationDescription}`, result);
         clearDisplayOnNextInput = true;
     }
 }
@@ -489,7 +494,7 @@ function pressLogFunction(func) {
         clearDisplayOnNextInput = true;
 
         // Add the operation and result to the history
-        addToHistory(`${operationDescription} = ${result}`);
+        addToHistory(`${operationDescription}`, result);
     }
 }
 
@@ -514,7 +519,7 @@ function pressExponential() {
         clearDisplayOnNextInput = true;
 
         // Add the operation and result to the history
-        addToHistory(`e^(${input}) = ${result}`);
+        addToHistory(`e^(${input})`, result);
     }
 }
 
@@ -528,7 +533,7 @@ function pressPowerOf(base) {
         clearDisplayOnNextInput = true;
 
         // Add the operation and result to the history
-        addToHistory(`${base}^(${exponent}) = ${result}`);
+        addToHistory(`${base}^(${exponent})`, result);
     }
 }
 
@@ -582,7 +587,7 @@ function pressHyperbolicFunction(func) {
         clearDisplayOnNextInput = true;
 
         // Add the operation to history
-        addToHistory(`${operationDescription} = ${result}`);
+        addToHistory(`${operationDescription}`, result);
     }
 }
 
