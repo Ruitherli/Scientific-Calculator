@@ -2,7 +2,7 @@
     display: flex
 }
 #calculator {
-    max-width: auto; /* Adjust as needed */
+    max-width: 1000px; /* Adjust as needed */
     padding: 20px;
     border: 1px solid #ddd; /* Light grey border */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
@@ -10,12 +10,12 @@
     background: #FAF8F1;
 }
 #derivative-container {
-    max-width: auto; /* Adjust as needed */
+    max-width: 700px; /* Adjust as needed */
     padding: 20px;
     border: 1px solid #ddd; /* Light grey border */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     margin: 0px; /* Center calculator */
-    background: #fff;
+    background: #F5EBE0;
 }
 /* The switch - the box around the slider */
 .switch {
@@ -130,8 +130,8 @@ input:checked + .slider:before {
 
 .differentiate-button {
     background-color: #DBA39A;
-    height: 50px;
-    width: 150px;
+    height: 40px;
+    width: 160px;
 }
 
 .equals-button {

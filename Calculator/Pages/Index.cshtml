@@ -1,8 +1,8 @@
 ﻿@page
 @model IndexModel
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
 
-<h2>Scientific Calculator</h2>
+<h5>Scientific Calculator</h5>
 <!-- Toggle Switch for Degree/Radian mode -->
 <div class="container">
 
@@ -157,8 +157,86 @@
         <!-- Button to trigger differentiation -->
         <button class="button differentiate-button" onclick="performDifferentiation()">Differentiate</button>
         <!-- Display for differentiation result -->
-        <div id="derivative-result"></div>
+        <div id="derivative-result">--DERIVATIVE RESULT--</div>
+        <div>
+            <h2>User Guide</h2>
+        <h5>Basic Operations</h5>
+        <ul>
+            <li><strong>Entering Numbers:</strong> Click on the number buttons (0-9) to enter values into the calculator. For hexadecimal calculations, you can also use the buttons (A-F).</li>
+            <li><strong>Basic Arithmetic:</strong> Use the <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code> buttons to perform addition, subtraction, multiplication, and division, respectively.</li>
+            <li><strong>Calculations:</strong> After entering your numbers and selecting an operation, press the <code>=</code> button to see the result.</li>
+        </ul>
 
+        <h5>Advanced Functions</h5>
+        <ul>
+            <li><strong>Power and Root:</strong> Use the <code>x^y</code>, <code>x^2</code>, <code>x^3</code>, <code>y√x</code>, and <code>√</code> buttons to perform exponentiation and root calculations.</li>
+            <li><strong>Trigonometry:</strong> Choose between degrees and radians using the degree/radian toggle switch. Use <code>sin</code>, <code>cos</code>, <code>tan</code>, and their inverse functions to calculate trigonometric values.</li>
+            <li><strong>Hyperbolic Functions:</strong> Calculate hyperbolic functions using the <code>sinh</code>, <code>cosh</code>, <code>tanh</code>, and their inverses.</li>
+            <li><strong>Logarithms and Exponentials:</strong> Use <code>log</code>, <code>ln</code>, <code>10^x</code>, and <code>e^x</code> for logarithmic and exponential functions.</li>
+        </ul>
 
+        <h5>Memory Functions</h5>
+        <ul>
+            <li><strong>Memory Add (M+):</strong> Adds the current value to memory.</li>
+            <li><strong>Memory Subtract (M-):</strong> Subtracts the current value from memory.</li>
+            <li><strong>Memory Recall (MR):</strong> Displays the current value stored in memory.</li>
+            <li><strong>Memory Clear (MC):</strong> Clears the stored value from memory.</li>
+        </ul>
+
+        <h5>Number Systems</h5>
+        <ul>
+            <li><strong>Binary (BIN):</strong> Switch to binary mode to enter and calculate with binary numbers.</li>
+            <li><strong>Octal (OCT):</strong> Switch to octal mode for octal number calculations.</li>
+            <li><strong>Decimal (DEC):</strong> Use decimal mode for standard base-10 calculations.</li>
+            <li><strong>Hexadecimal (HEX):</strong> Switch to hexadecimal mode for calculations with hexadecimal numbers.</li>
+        </ul>
+
+        <h5>Error Handling</h5>
+        <p>The calculator is designed to alert you in case of invalid inputs or undefined operations, such as division by zero.</p>
+
+        <h5>History Feature</h5>
+        <p>The calculator keeps track of your calculations in a history list. Click on any entry in the history to use its result in a new calculation.</p>
+
+        <h5>Clearing Inputs</h5>
+        <ul>
+            <li><strong>Clear All (CA):</strong> Clears all current inputs and resets the calculator.</li>
+            <li><strong>Clear Entry (CE):</strong> Clears the last number entered.</li>
+        </ul>
+
+        <h5>Symbolic Differentiation</h5>
+        <p>Enter a mathematical function and a variable, and the calculator will compute the derivative of the function with respect to the variable.</p>
+            <h6>Examples</h6>
+            <ul>
+                <li>
+                    <strong>Function:</strong> x^2 + 3x + 2 <br>
+                    <strong>Variable:</strong> x <br>
+                    <strong>Result:</strong> The derivative will be 2x + 3.
+                </li>
+                <li>
+                    <strong>Function:</strong> sin(x) <br>
+                    <strong>Variable:</strong> x <br>
+                    <strong>Result:</strong> The derivative will be cos(x).
+                </li>
+                <li>
+                    <strong>Function:</strong> e^(2x) <br>
+                    <strong>Variable:</strong> x <br>
+                    <strong>Result:</strong> The derivative will be 2e^(2x).
+                </li>
+                <li>
+                    <strong>Function:</strong> ln(x) <br>
+                    <strong>Variable:</strong> x <br>
+                    <strong>Result:</strong> The derivative will be 1/x.
+                </li>
+            </ul>
+            <p>Note: Ensure your function is entered correctly. For example, use <code>x^2</code> for x squared and <code>3*x</code> for three times x.</p>
+
+        <h5>Tips for Use</h5>
+            <ul>
+                <li>Ensure that the input is appropriate for the selected number system.</li>
+                <li>Use the degree/radian toggle to accurately perform trigonometric calculations based on your desired unit.</li>
+                <li>Clicking on history entries will populate the current value with the result of that entry for further calculations.</li>
+            </ul>
+
+        </div>
     </div>
 </div>
