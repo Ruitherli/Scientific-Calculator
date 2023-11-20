@@ -98,24 +98,40 @@ function pressNthRoot() {
     }
 }
 
-let currentNumberSystem = "DEC"; // Possible values: "BIN", "DEC", "OCT"
+let currentNumberSystem = "DEC"; // Possible values: "BIN", "DEC", "OCT" "HEX"
 function updateButtonStates() {
     const isBinary = currentNumberSystem === "BIN";
+    const isOctal = currentNumberSystem === "OCT";
     const isDecimal = currentNumberSystem === "DEC";
+    const isHex = currentNumberSystem === "HEX";
 
-    // Binary mode: Only '0' and '1' are enabled
-    document.getElementById('btn-0').disabled = false;
-    document.getElementById('btn-1').disabled = false;
+    // Enable all numeric buttons, then disable based on the mode
+    for (let i = 0; i <= 9; i++) {
+        document.getElementById('btn-' + i).disabled = isBinary || (isOctal && i > 7);
+    }
+
+    // Enable buttons 'A' to 'F' only in HEX mode
+    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(letter => {
+        document.getElementById('btn-' + letter).disabled = !isHex;
+    });
 
     // Disable buttons '2' to '9' in binary mode
     for (let i = 2; i <= 9; i++) {
         document.getElementById('btn-' + i).disabled = isBinary;
     }
 
-    // Enable/disable buttons '8' and '9' based on whether it's decimal mode
-    document.getElementById('btn-8').disabled = !isDecimal;
-    document.getElementById('btn-9').disabled = !isDecimal;
+    // In octal mode, disable buttons '8' and '9'
+    document.getElementById('btn-8').disabled = isBinary || isOctal;
+    document.getElementById('btn-9').disabled = isBinary || isOctal;
+
+    // In binary mode, disable all except '0' and '1'
+    if (isBinary) {
+        for (let i = 2; i <= 9; i++) {
+            document.getElementById('btn-' + i).disabled = true;
+        }
+    }
 }
+
 
 function updateNumberFormatDisplay() {
     const formatDisplay = document.getElementById('number-format-display');
@@ -139,6 +155,12 @@ function setToDecimalMode() {
     updateButtonStates();
 }
 
+function setToHexaMode() {
+    currentNumberSystem = "HEX";
+    updateNumberFormatDisplay();
+    updateButtonStates();
+}
+
 function convertToDecimal(input) {
     switch (currentNumberSystem) {
         case "BIN":
@@ -146,6 +168,8 @@ function convertToDecimal(input) {
         case "OCT":
             return parseInt(input, 8);
         case "DEC":
+        case "HEX":
+            return parseInt(input, 16)
         default:
             return parseFloat(input);
     }
@@ -158,6 +182,8 @@ function convertFromDecimal(number) {
         case "OCT":
             return number.toString(8);
         case "DEC":
+        case "HEX":
+            return number.toString(16);
         default:
             return number.toString();
     }
