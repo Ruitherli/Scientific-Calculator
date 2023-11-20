@@ -15,10 +15,9 @@
         <!-- History Screen -->
         <h5>HISTORY</h5>
         <div id="history" class="history-display"></div>
-        <button class="button history-button" onclick="clearHistory()">Clear History</button>
+        <button class="button history-button" onclick="clearHistory()">CLEAR</button>
 
         <div class="operations-wrapper">
-
         <!-- Memory Functions -->
         <div id="memory-functions-container">
             <button class="button memory-button" onclick="memoryClear()">MC</button>
@@ -29,32 +28,35 @@
         </div>
 
         <!-- Basic Operations -->
-        <div id="basic-operations-container">
+        <div id="basic-operations-container1">
             <button class="button number-button" id="btn-7" onclick="press('7')">7</button>
             <button class="button number-button" id="btn-8" onclick="press('8')">8</button>
             <button class="button number-button" id="btn-9" onclick="press('9')">9</button>
-            <button onclick="pressOperation('/')">/</button>
-            <button onclick="clearEntry()">CE</button>
+            <button class="button button-func1" onclick="pressOperation('/')">/</button>
+            <button class="button clear-button" onclick="clearAll()">CA</button>
         </div>
-        
-        <div>
+
+            <div id="basic-operations-container2">
             <button class="button number-button" id="btn-4" onclick="press('4')">4</button>
             <button class="button number-button" id="btn-5" onclick="press('5')">5</button>
             <button class="button number-button" id="btn-6" onclick="press('6')">6</button>
-            <button onclick="pressOperation('*')">*</button>
+                <button class="button button-func1" onclick="pressOperation('*')">*</button>
+                <button class="button clear-button" onclick="clearEntry()">CE</button>
             </div>
-            <div>
+
+            <div id="basic-operations-container3">
             <button class="button number-button" id="btn-1" onclick="press('1')">1</button>
             <button class="button number-button" id="btn-2" onclick="press('2')">2</button>
             <button class="button number-button" id="btn-3" onclick="press('3')">3</button>
-            <button onclick="pressOperation('-')">-</button>
+                <button class="button button-func1" onclick="pressOperation('-')">-</button>
             <button class="button equals-button" onclick="calculate()">=</button>
             </div>
-            <div>
-            <button onclick="toggleSign()">+/-</button>
+
+            <div id="basic-operations-container4">
+            <button class="button button-func1" onclick="toggleSign()">+/-</button>
             <button class="button number-button" id="btn-0" onclick="press('0')">0</button>
-            <button onclick="press('.')">.</button>
-            <button onclick="pressOperation('+')">+</button>
+            <button class="button button-func1" onclick="press('.')">.</button>
+            <button class="button button-func1" onclick="pressOperation('+')">+</button>
             </div>
         </div>
 
@@ -62,22 +64,22 @@
         <!-- Hexademical Buttons -->
             <div id="hexadecimal-buttons-container">
                 <h6>HEXADECIMAL</h6>
-                <button id="btn-A" onclick="press('A')">A</button>
-                <button id="btn-B" onclick="press('B')">B</button>
-                <button id="btn-C" onclick="press('C')">C</button>
-                <button id="btn-D" onclick="press('D')">D</button>
-                <button id="btn-E" onclick="press('E')">E</button>
-                <button id="btn-F" onclick="press('F')">F</button>
+                <button class="button button-func2" id="btn-A" onclick="press('A')">A</button>
+                <button class="button button-func2" id="btn-B" onclick="press('B')">B</button>
+                <button class="button button-func2" id="btn-C" onclick="press('C')">C</button>
+                <button class="button button-func2" id="btn-D" onclick="press('D')">D</button>
+                <button class="button button-func2" id="btn-E" onclick="press('E')">E</button>
+                <button class="button button-func2" id="btn-F" onclick="press('F')">F</button>
             </div>
 
         <div id="power-root-functions-container">
                 <h6>POWER AND ROOT</h6>
-            <button onclick="pressPowerButton()">x^y</button>
-            <button onclick="pressPower(currentInput, '2')">x<sup>2</sup></button>
-            <button onclick="pressPower(currentInput, '3')">x<sup>3</sup></button>
-            <button onclick="pressNthRoot()">y√x</button>
-            <button onclick="pressSquareRoot()">√</button>
-            <button onclick="press('pi')">π</button>
+                <button class="button button-func1" onclick="pressPowerButton()">x^y</button>
+                <button class="button button-func1" onclick="pressPower(currentInput, '2')">x<sup>2</sup></button>
+                <button class="button button-func1" onclick="pressPower(currentInput, '3')">x<sup>3</sup></button>
+                <button class="button button-func1" onclick="pressNthRoot()">y√x</button>
+                <button class="button button-func1" onclick="pressSquareRoot()">√</button>
+                <button class="button button-func1" onclick="press('pi')">π</button>
         </div>
 
         <!-- Trigonometry Functions -->
@@ -90,54 +92,54 @@
                     </label>
                     <span id="mode-display">Degree</span>
                 </div>
-            <button onclick="pressTrigFunction('sin')">sin</button>
-            <button onclick="pressTrigFunction('cos')">cos</button>
-            <button onclick="pressTrigFunction('tan')">tan</button>
-            <button onclick="pressTrigFunction('asin')">sin<sup>-1</sup></button>
-            <button onclick="pressTrigFunction('acos')">cos<sup>-1</sup></button>
-            <button onclick="pressTrigFunction('atan')">tan<sup>-1</sup></button>
+                <button class="button button-func2" onclick="pressTrigFunction('sin')">sin</button>
+                <button class="button button-func2" onclick="pressTrigFunction('cos')">cos</button>
+                <button class="button button-func2" onclick="pressTrigFunction('tan')">tan</button>
+                <button class="button button-func2" onclick="pressTrigFunction('asin')">sin<sup>-1</sup></button>
+                <button class="button button-func2" onclick="pressTrigFunction('acos')">cos<sup>-1</sup></button>
+                <button class="button button-func2" onclick="pressTrigFunction('atan')">tan<sup>-1</sup></button>
 
         </div>
 
         <!-- Hyperbolic Functions -->
         <div id="hyperbolic-functions-container">
                 <h6>HYPERBOLIC</h6>
-            <button onclick="pressHyperbolicFunction('sinh')">sinh</button>
-            <button onclick="pressHyperbolicFunction('cosh')">cosh</button>
-            <button onclick="pressHyperbolicFunction('tanh')">tanh</button>
-            <button onclick="pressHyperbolicFunction('asinh')">sinh⁻¹</button>
-            <button onclick="pressHyperbolicFunction('acosh')">cosh⁻¹</button>
-            <button onclick="pressHyperbolicFunction('atanh')">tanh⁻¹</button>
+                <button class="button button-func1" onclick="pressHyperbolicFunction('sinh')">sinh</button>
+                <button class="button button-func1" onclick="pressHyperbolicFunction('cosh')">cosh</button>
+                <button class="button button-func1" onclick="pressHyperbolicFunction('tanh')">tanh</button>
+                <button class="button button-func1" onclick="pressHyperbolicFunction('asinh')">sinh⁻¹</button>
+                <button class="button button-func1" onclick="pressHyperbolicFunction('acosh')">cosh⁻¹</button>
+                <button class="button button-func1" onclick="pressHyperbolicFunction('atanh')">tanh⁻¹</button>
         </div>
 
         <!-- Logarithmic and Exponential Functions -->
         <div id="log-exp-functions-container">
                 <h6>LOGARITHMIC AND EXPONENTIAL</h6>
-            <button onclick="pressLogFunction('log')">log</button>
-            <button onclick="pressLogFunction('ln')">ln</button>
-            <button onclick="pressLogBase()">log<sub>b</sub>(x)</button>
-            <button onclick="pressPowerOf(10)">10<sup>x</sup></button>
-            <button onclick="pressExponential()">e<sup>x</sup></button>
-            <button onclick="press('euler')">e</button>
+                <button class="button button-func2" onclick="pressLogFunction('log')">log</button>
+                <button class="button button-func2" onclick="pressLogFunction('ln')">ln</button>
+                <button class="button button-func2" onclick="pressLogBase()">log<sub>b</sub>(x)</button>
+                <button class="button button-func2" onclick="pressPowerOf(10)">10<sup>x</sup></button>
+                <button class="button button-func2" onclick="pressExponential()">e<sup>x</sup></button>
+                <button class="button button-func2" onclick="press('euler')">e</button>
         </div>
 
         <!-- Number System Functions -->
         <div id="number-system-functions-container">
                 <h6>NUMBER SYSTEM</h6>
-            <button onclick="setToBinaryMode()">BIN</button>
-            <button onclick="setToOctalMode()">OCT</button>
-            <button onclick="setToDecimalMode()">DEC</button>
-                <button onclick="setToHexaMode()">HEX</button>
+                <button class="button button-func1" onclick="setToBinaryMode()">BIN</button>
+                <button class="button button-func1" onclick="setToOctalMode()">OCT</button>
+                <button class="button button-func1" onclick="setToDecimalMode()">DEC</button>
+                <button class="button button-func1" onclick="setToHexaMode()">HEX</button>
         </div>
 
         <!-- Logical Functions -->
         <div id="logical-functions-container">
                 <h6>LOGICAL</h6>
             <!-- Logical Buttons -->
-            <button onclick="setOperation('AND')">AND</button>
-            <button onclick="setOperation('OR')">OR</button>
-            <button onclick="setOperation('XOR')">XOR</button>
-            <button onclick="pressLogicalNot()">NOT</button>
+                <button class="button button-func2" onclick="setOperation('AND')">AND</button>
+                <button class="button button-func2" onclick="setOperation('OR')">OR</button>
+                <button class="button button-func2" onclick="setOperation('XOR')">XOR</button>
+                <button class="button button-func2" onclick="pressLogicalNot()">NOT</button>
 
         </div>
         </div>

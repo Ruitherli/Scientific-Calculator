@@ -7,8 +7,7 @@
     border: 1px solid #ddd; /* Light grey border */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     margin: 0px; /* Center calculator */
-    background: #fff; /* White background */
-
+    background: #FAF8F1;
 }
 #derivative-container {
     max-width: auto; /* Adjust as needed */
@@ -16,7 +15,7 @@
     border: 1px solid #ddd; /* Light grey border */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
     margin: 0px; /* Center calculator */
-    background: #fff; /* White background */
+    background: #fff;
 }
 /* The switch - the box around the slider */
 .switch {
@@ -90,34 +89,53 @@ input:checked + .slider:before {
 }
 
 /* Memory Buttons */
+#memory-functions-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .memory-button {
-    background-color: #FFA07A; /* Light Salmon */
+    background-color: #F0DBDB;
+    flex: 1;
+    margin: 8px;
 }
 
 #memory-indicator {
     color: red;
 }
 
+
 /* Number Buttons */
 .number-button {
-    background-color: #90EE90; 
+    background-color: #F5EBE0;
+}
+
+.button-func1 {
+    background-color: #F4EAD5;
+}
+
+.button-func2 {
+    background-color: #F5EBE0;
+}
+
+.clear-button {
+    background-color: #FFCAC8;
 }
 
 .history-button {
-    background-color:  lightgoldenrodyellow;
+    background-color: #F7A4A4;
     height: 30px;
     width: 170px;
 }
 
 .differentiate-button {
-    background-color: #F08080; /* Light Coral */
+    background-color: #DBA39A;
     height: 50px;
     width: 150px;
 }
 
-/* Equals Button - Making it larger and a distinct color */
 .equals-button {
-    background-color: #F08080; /* Light Coral */
+    background-color: #FFCAC8;
 }
 
 /* Adjusts the width of the last button row to fit the larger equals button */
@@ -144,7 +162,8 @@ button {
     border-radius: 5px;
     background-color: #f2f2f2; /* Light grey background */
     color: #333; /* Darker font color for contrast */
-    font-size: 18px; /* Larger font size */
+    font-size: 20px; /* Larger font size */
+    font-family: monospace;
     cursor: pointer; /* Changes cursor to indicate button */
     transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
@@ -165,18 +184,6 @@ button {
     box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1); /* Inset shadow for depth */
 }
 
-/* Specific styles for different types of buttons, if needed */
-.function-button {
-    background-color: #d7ebf9; /* Different background for function buttons */
-}
-
-.number-button {
-    background-color: #f9f9f9; /* Different background for number buttons */
-}
-
-.operator-button {
-    background-color: #ebf9d7; /* Different background for operator buttons */
-}
 .history-display {
     width: calc(100% - 40px);
     height: 100px;
@@ -184,6 +191,7 @@ button {
     overflow-y: scroll;
     margin-top: 10px;
     padding: 5px;
+    background-color: white;
 }
 
 .history-entry {
