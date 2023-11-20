@@ -105,32 +105,30 @@ function updateButtonStates() {
     const isDecimal = currentNumberSystem === "DEC";
     const isHex = currentNumberSystem === "HEX";
 
-    // Enable all numeric buttons, then disable based on the mode
+    // Enable/disable numeric buttons based on the current number system
     for (let i = 0; i <= 9; i++) {
-        document.getElementById('btn-' + i).disabled = isBinary || (isOctal && i > 7);
-    }
-
-    // Enable buttons 'A' to 'F' only in HEX mode
-    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(letter => {
-        document.getElementById('btn-' + letter).disabled = !isHex;
-    });
-
-    // Disable buttons '2' to '9' in binary mode
-    for (let i = 2; i <= 9; i++) {
-        document.getElementById('btn-' + i).disabled = isBinary;
-    }
-
-    // In octal mode, disable buttons '8' and '9'
-    document.getElementById('btn-8').disabled = isBinary || isOctal;
-    document.getElementById('btn-9').disabled = isBinary || isOctal;
-
-    // In binary mode, disable all except '0' and '1'
-    if (isBinary) {
-        for (let i = 2; i <= 9; i++) {
-            document.getElementById('btn-' + i).disabled = true;
+        const button = document.getElementById('btn-' + i);
+        if (button) {
+            button.disabled = false; // Enable all by default
+            if (isBinary && i > 1) {
+                button.disabled = true; // Disable '2' to '9' in binary mode
+            }
+            if (isOctal && i > 7) {
+                button.disabled = true; // Disable '8' and '9' in octal mode
+            }
+            // In decimal and hexadecimal modes, all numeric buttons are enabled
         }
     }
+
+    // Enable/disable letter buttons for HEX mode
+    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(letter => {
+        const button = document.getElementById('btn-' + letter);
+        if (button) {
+            button.disabled = !isHex; // Enable only in HEX mode
+        }
+    });
 }
+
 
 
 function updateNumberFormatDisplay() {
