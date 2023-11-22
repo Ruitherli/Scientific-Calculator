@@ -61,14 +61,23 @@ function clearHistory() {
     updateHistoryDisplay();
 }
 function pressOperation(op) {
-    if (operation !== null) {
-        calculate();
+    if (currentInput.trim() === '') {
+        // If there's no current input, replace the operation
+        if (previousInput !== '') {
+            operation = op;
+            updateDisplay(`${previousInput} ${op} `);
+        }
+    } else {
+        if (operation !== null) {
+            calculate(); // If an operation is already set, calculate the result first
+        }
+        previousInput = currentInput; // Set the current input as the previous input
+        currentInput = ''; // Clear the current input for the next operand
+        operation = op; // Set the new operation
+        updateDisplay(`${previousInput} ${op} `); // Update the display
     }
-
-    previousInput = currentInput;
-    currentInput = '';
-    operation = op;
 }
+
 
 function pressPower(base, exponent) {
     // If both base and exponent are provided, calculate the power directly
@@ -139,24 +148,28 @@ function setToBinaryMode() {
     currentNumberSystem = "BIN";
     updateNumberFormatDisplay();
     updateButtonStates();
+    updateFunctionalityStates();
 }
 
 function setToOctalMode() {
     currentNumberSystem = "OCT";
     updateNumberFormatDisplay();
     updateButtonStates();
+    updateFunctionalityStates();
 }
 
 function setToDecimalMode() {
     currentNumberSystem = "DEC";
     updateNumberFormatDisplay();
     updateButtonStates();
+    updateFunctionalityStates();
 }
 
 function setToHexaMode() {
     currentNumberSystem = "HEX";
     updateNumberFormatDisplay();
     updateButtonStates();
+    updateFunctionalityStates();
 }
 
 function convertToDecimal(input) {
@@ -165,9 +178,10 @@ function convertToDecimal(input) {
             return parseInt(input, 2);
         case "OCT":
             return parseInt(input, 8);
-        case "DEC":
         case "HEX":
             return parseInt(input, 16)
+        case "DEC":
+        
         default:
             return parseFloat(input);
     }
@@ -179,9 +193,10 @@ function convertFromDecimal(number) {
             return number.toString(2);
         case "OCT":
             return number.toString(8);
-        case "DEC":
         case "HEX":
             return number.toString(16);
+        case "DEC":
+        
         default:
             return number.toString();
     }
@@ -656,9 +671,44 @@ function toggleSign() {
 
 }
 
-function updateDisplay(value) {
-    const display = document.getElementById('display');
-    display.innerText = value;
+function updateFunctionalityStates() {
+    // List of container IDs for functionalities to be disabled when not in DEC mode
+    const functionalityContainers = [
+        'power-root-functions-container', 'trigonometry-functions-container', 'hyperbolic-functions-container', 'log-exp-functions-container'
+        // Add all the relevant container IDs here
+    ];
+
+    const isDecimal = currentNumberSystem === "DEC";
+
+    // Loop over the container IDs and set their styles and child button attributes based on whether the current number system is DEC
+    functionalityContainers.forEach(containerId => {
+        const container = document.getElementById(containerId);
+        if (container) {
+            if (isDecimal) {
+                container.style.pointerEvents = 'auto';
+                container.style.opacity = '1';
+                setChildrenDisabledState(container, false); // Enable all buttons
+            } else {
+                container.style.pointerEvents = 'none';
+                container.style.opacity = '0.4';
+                setChildrenDisabledState(container, true); // Disable all buttons
+            }
+        }
+    });
 }
+
+function setChildrenDisabledState(container, state) {
+    const buttons = container.getElementsByTagName('button');
+    for (const button of buttons) {
+        button.disabled = state;
+    }
+    // Do the same for other form elements if needed
+}
+
+function updateDisplay(value) {
+    const displayElement = document.getElementById('display');
+    displayElement.innerText = value;
+}
+
 
 
